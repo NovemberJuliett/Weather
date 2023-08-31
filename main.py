@@ -1,11 +1,41 @@
 import requests
+import logging
 
-url_template = "https://wttr.in/{}"
-response_svo = requests.get(url_template.format("svo"))
-response_london = requests.get(url_template.format("london"))
-print(response_svo.text, response_london.text)
+cities_list = [
+    "SVO",
+    "London",
+    "Череповец"
+]
 
 
-url_ru = "https://wttr.in/Череповец?lang=ru&?q&?T&?n&?M&?m"
-response_new_cherepovets = requests.get(url_ru)
-print(response_new_cherepovets.text)
+def request_weather():
+    for i in cities_list:
+        url_template = "https://wttr.in/{}"
+        response = requests.get(url_template.format(i))
+        response.raise_for_status()
+        return response.text
+
+
+def request_otherweather():
+    for i in cities_list:
+        url_template = "http://wttr.dvmn.org//{}"
+        response = requests.get(url_template.format(i))
+        response.raise_for_status()
+        return response.text
+
+
+try:
+    forecast = request_weather()
+except requests.exceptions.ConnectionError:
+    forecast = request_otherweather()
+
+
+cherepovets_param = {"?lang=": "ru", "?M": "", "?m": "", "?n": "", "?q": "", "T": ""}
+response_new_cherepovets = requests.get("https://wttr.in/Череповец", params=cherepovets_param)
+response_new_cherepovets.raise_for_status()
+print(response_new_cherepovets.url)
+
+
+
+
+
