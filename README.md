@@ -12,6 +12,7 @@ Python3 should already be installed. Use pip (or pip3, if there is a conflict wi
 
 Code sample of the weather report for London, UK:
 
-```url_template = "https://wttr.in/{}"``` <br/>
-```response_london = requests.get(url_template.format("london"))```<br/>
-```print(response_london.text)```
+``` python 
+url_template = "https://wttr.in/{}"
+response_london = requests.get(url_template.format("london"))
+print(response_london.text)
