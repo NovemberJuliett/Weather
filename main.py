@@ -22,6 +22,5 @@ def main():
     print(response_new_cherepovets.url)
 
 
-
 if __name__ == '__main__':
     main()
