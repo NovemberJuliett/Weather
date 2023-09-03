@@ -10,9 +10,6 @@ Python3 should already be installed. Use pip (or pip3, if there is a conflict wi
 
 ## How to use
 
-Code sample of the weather report for London, UK:
-
+Open a new terminal window and use the following command:
 ``` python 
-url_template = "https://wttr.in/{}"
-response_london = requests.get(url_template.format("london"))
-print(response_london.text)
+python main.py
